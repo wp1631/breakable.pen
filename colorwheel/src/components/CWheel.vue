@@ -3,8 +3,8 @@
         <color-picker v-bind="color" variant="persistent" @input="onInput" @select="onColorSelect"/>
         <h1 v-text="color.hue.toFixed(3)"></h1>
         <div id="response">
-        <button>Submit</button>
-        <button>Random</button>
+        <button >Submit</button>
+        <button @click="()=>color.hue=(Math.random()*360)">Random</button>
         </div>
     </div>
 </template>
