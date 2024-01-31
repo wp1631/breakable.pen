@@ -81,6 +81,15 @@
         align-items: center;
     }
 
+    #container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-self: center;
+        align-items: center;
+    }
+
     #response {
         display: flex;
         flex-direction: row;
@@ -98,10 +107,10 @@
 
     #container {
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-content: center;
         align-self: center;
         align-items: center;
+        width: 100%;
     }
 </style>

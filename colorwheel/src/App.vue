@@ -3,14 +3,15 @@
 </script>
 
 <template>
-  <div id="app">
+  <div id="vue-app">
     <CWheel/>
   </div>
 </template>
 
 <style>
-  #app {
+  #vue-app {
     display: flex;
-    flex-direction: column;
+    width: 100dvw;
+    margin: auto;
   }
 </style>
