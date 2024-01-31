@@ -1,10 +1,14 @@
 <template>
     <div id="container">
-        <color-picker v-bind="{color, msg}" variant="persistent" @input="onInput" @select="onColorSelect"/>
-        <h1 v-text="color.hue.toFixed(3)"></h1> <h2 v-text="msg.msg"></h2>
+        <color-picker :key="componentKey" v-model.number="color.hue" v-bind="{msg, color}" variant="persistent" @input="onInput" @select="onColorSelect"/>
+        <h1 v-text="color.hue.toFixed(1)"></h1> <h2 v-text="msg.msg"></h2>
         <div id="response">
-        <button @click.passive="()=>msg.msg='sent'">Submit</button>
-        <button @click.passive="()=>{color.hue=(Math.random()*360); msg.msg=''}">Random</button>
+        <button @click="()=>msg.msg='sent'">Submit</button>
+        <button @click="()=>{
+            msg.msg='';
+            color.hue=0;
+            forcReload();
+            }">Reset</button>
         </div>
     </div>
 </template>
@@ -13,6 +17,7 @@
     import { reactive } from 'vue';
     import ColorPicker from '@radial-color-picker/vue-color-picker';
     let msg: string;
+    let hueVal: number;
 
     export default {
         components: { ColorPicker },
@@ -20,16 +25,20 @@
             const msg = reactive({
                 msg: "",
             });
+
             const color = reactive({
-                hue: 50,
+                hue: 0,
                 saturation: 100,
                 luminosity: 50,
                 alpha: 1,
             });
 
+
             return {
                 color,
                 msg,
+                hueVal,
+                componentKey: 0,
                 onInput(hue: number) {
                     console.log("Hue changed to: " + hue);
                     color.hue = hue;
@@ -43,8 +52,18 @@
                     console.log("Color selected: ");
                     console.log(color);
                 },
+                onChange(hue:number)
+                {
+                    console.log("Hue changed to: " + hue);
+                    color.hue = hue;
+                }
             };
         },
+        methods: {
+            forcReload() {
+                this.componentKey += 1;
+            },
+        }
     };
 </script>
 
