@@ -25,11 +25,16 @@
 
             return {
                 color,
-                onInput(hue) {
+                onInput(hue: number) {
                     console.log("Hue changed to: " + hue);
                     color.hue = hue;
                 },
-                onColorSelect(color) {
+                onColorSelect(color: {
+                    hue: number;
+                    saturation: number;
+                    luminosity: number;
+                    alpha: number;
+                }) {
                     console.log("Color selected: ");
                     console.log(color);
                 },
